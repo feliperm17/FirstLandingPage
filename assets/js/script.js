@@ -29,11 +29,22 @@ function meuEscopo() {
         }
     }
 
+    function validaInputs(peso, altura){
+        if(!peso) {
+            alert("Além de gordo é burro, digite um peso válido.")
+            return false
+        } else if (!altura) {
+            alert("Digite uma altura válida.")
+            return false
+        }
+    }
+
     function recebeEventoForm(evento) {
         evento.preventDefault();
-        const peso = form.querySelector('.peso');
-        const altura = form.querySelector('.altura');
-
+        const peso = (form.querySelector('.peso')).value;
+        const altura = (form.querySelector('.altura')).value;
+        
+        if (!validaInputs(peso, altura)) return; 
         let imc = calculoIMC(peso.value, altura.value).toFixed(2)
 
         resultado.innerHTML = `<p> ${resultadoIMC(imc)}</p>`
